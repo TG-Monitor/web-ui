@@ -1,0 +1,12 @@
+<mat-form-field>
+  <input matInput placeholder="Add peer" #peerUsername>
+</mat-form-field>
+<button mat-button (click)="addPeer(peerUsername.value); peerUsername.value=''">Add</button>
+
+
+<mat-list>
+  <mat-list-item *ngFor="let peer of peers">
+    {{peer.username}}
+    <button mat-button (click)="deletePeer(peer)">x</button>
+  </mat-list-item>
+</mat-list>
