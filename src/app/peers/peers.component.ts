@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Peer } from '../types/peer';
-import { PEERS } from '../types/mock-peers';
+import { PeerService } from '../services/peer.service';
 
 @Component({
   selector: 'app-peers',
@@ -10,20 +10,23 @@ import { PEERS } from '../types/mock-peers';
 })
 export class PeersComponent implements OnInit {
 
-  peers: Peer[] = PEERS;
+  peers: Peer[];
 
-  constructor() { }
+  constructor(private peerService: PeerService) { }
 
   ngOnInit() {
+    this.peers = this.peerService.getPeers();
   }
 
   addPeer(username: string) {
     username = username.trim();
     if (!username) { return; }
-    this.peers.unshift({username: username});
+    const newPeer: Peer = this.peerService.addPeer(username);
+    this.peers.unshift(newPeer);
   }
 
   deletePeer(peer: Peer) {
+    this.peerService.deletePeer(peer);
     this.peers.splice(this.peers.indexOf(peer), 1);
   }
 
