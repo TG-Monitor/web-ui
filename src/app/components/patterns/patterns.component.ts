@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Pattern } from '../types/pattern';
-import { PATTERNS } from '../types/mock-patterns';
+import { Pattern } from '../../types/pattern';
+import { PATTERNS } from '../../types/mock-patterns';
 
 @Component({
   selector: 'app-patterns',

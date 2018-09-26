@@ -15,10 +15,10 @@ import {MatButtonModule} from '@angular/material/button';
 
 
 import { AppComponent } from './app.component';
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { GridComponent } from './grid/grid.component';
-import { PeersComponent } from './peers/peers.component';
-import { PatternsComponent } from './patterns/patterns.component';
+import { ToolbarComponent } from '../components/toolbar/toolbar.component';
+import { GridComponent } from './components/grid/grid.component';
+import { PeersComponent } from './components/peers/peers.component';
+import { PatternsComponent } from './components/patterns/patterns.component';
 
 @NgModule({
   declarations: [

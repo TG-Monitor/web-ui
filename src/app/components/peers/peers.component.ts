@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Peer } from '../types/peer';
-import { PeerService } from '../services/peer.service';
+import { Peer } from '../../types/peer';
+import { PeerService } from '../../services/peer.service';
 
 @Component({
   selector: 'app-peers',
