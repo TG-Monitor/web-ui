@@ -9,9 +9,11 @@ import {MatListModule} from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+
 
 import { AppComponent } from './app.component';
-import { ToolbarComponent } from '../components/toolbar/toolbar.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { GridComponent } from './components/grid/grid.component';
 import { PeersComponent } from './components/peers/peers.component';
 import { PatternsComponent } from './components/patterns/patterns.component';
@@ -19,6 +21,7 @@ import {StompConfig, StompRService, StompService} from '@stomp/ng2-stompjs';
 import {RpcService} from './services/rpc.service';
 import {CommService} from './services/comm.service';
 import {RpcWrapperService} from './services/rpc-wrapper.service';
+import { StatusComponent } from './components/status/status.component';
 
 const stompConfig: StompConfig = {
   url: 'ws://127.0.0.1:15674/ws',
@@ -38,7 +41,8 @@ const stompConfig: StompConfig = {
     ToolbarComponent,
     GridComponent,
     PeersComponent,
-    PatternsComponent
+    PatternsComponent,
+    StatusComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,8 @@ const stompConfig: StompConfig = {
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
   ],
   providers: [
     StompService,

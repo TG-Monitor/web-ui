@@ -13,6 +13,23 @@ export class CommService {
 
   constructor(private serializer: SerializerService, private rpc: RpcWrapperService) { }
 
+  public isLoggedIn(): Observable<boolean> {
+    // @ts-ignore
+    const payload: string = this.serializer.serializeRequest(REQUESTS.IS_LOGGED_IN);
+    return this.rpc.rpc(payload).pipe(
+      map((response: string) => this.serializer.deserializeResponse(response))
+    );
+  }
+
+  public getPhoneNumber(): Observable<string> {
+    // @ts-ignore
+    const payload: string = this.serializer.serializeRequest(REQUESTS.GET_PHONE_NUMBER);
+    return this.rpc.rpc(payload).pipe(
+      map((response: string) => this.serializer.deserializeResponse(response))
+    );
+
+  }
+
   public getPeers(): Observable<Peer[]> {
     // @ts-ignore
     const payload: string = this.serializer.serializeRequest(REQUESTS.GET_PEERS);

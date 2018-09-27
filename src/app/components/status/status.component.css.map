@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,OAAQ;EACN,SAAS,EAAE,MAAM",
+"sources": ["status.component.scss"],
+"names": [],
+"file": "status.component.css"
+}
