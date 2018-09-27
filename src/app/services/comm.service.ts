@@ -21,6 +21,20 @@ export class CommService {
     );
   }
 
+  public isRunning(): Observable<boolean> {
+    // @ts-ignore
+    const payload: string = this.serializer.serializeRequest(REQUESTS.IS_RUNNING);
+    return this.rpc.rpc(payload).pipe(
+      map((response: string) => this.serializer.deserializeResponse(response))
+    );
+  }
+
+  public start(): Observable<any> {
+    // @ts-ignore
+    const payload: string = this.serializer.serializeRequest(REQUESTS.START);
+    return this.rpc.rpc(payload);
+  }
+
   public getPhoneNumber(): Observable<string> {
     // @ts-ignore
     const payload: string = this.serializer.serializeRequest(REQUESTS.GET_PHONE_NUMBER);
