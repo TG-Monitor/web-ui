@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -22,8 +22,10 @@ import {RpcService} from './services/rpc.service';
 import {CommService} from './services/comm.service';
 import {RpcWrapperService} from './services/rpc-wrapper.service';
 import { StatusComponent } from './components/status/status.component';
-import { MenuComponent } from './components/menu/menu.component';
+import { MenuComponent} from './components/menu/menu.component';
 import {MatIconModule} from '@angular/material/icon';
+import { EmailDialogComponent } from './components/email-dialog/email-dialog.component';
+import {MatDialog, MatDialogModule} from '@angular/material';
 
 
 const stompConfig: StompConfig = {
@@ -39,6 +41,9 @@ const stompConfig: StompConfig = {
 };
 
 @NgModule({
+  entryComponents: [
+    EmailDialogComponent
+  ],
   declarations: [
     AppComponent,
     ToolbarComponent,
@@ -47,6 +52,7 @@ const stompConfig: StompConfig = {
     PatternsComponent,
     StatusComponent,
     MenuComponent,
+    EmailDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,9 +65,11 @@ const stompConfig: StompConfig = {
     MatInputModule,
     MatButtonModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [
+    MatDialog,
     StompService,
     StompRService,
     {
