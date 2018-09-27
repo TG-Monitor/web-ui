@@ -1,7 +1,7 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+"mappings": "AAAA,MAAO;EACL,KAAK,EAAE,GAAG",
+"sources": ["email-dialog.component.scss"],
 "names": [],
 "file": "email-dialog.component.css"
 }

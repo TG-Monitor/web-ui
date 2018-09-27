@@ -15,7 +15,9 @@ export class MenuComponent implements OnInit {
   }
 
   openEmailDialog(): void {
-    const dialogRef = this.dialog.open(EmailDialogComponent);
+    const dialogRef = this.dialog.open(EmailDialogComponent, {
+      width: '450px'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
