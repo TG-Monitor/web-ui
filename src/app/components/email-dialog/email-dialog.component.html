@@ -2,7 +2,7 @@
 <mat-dialog-content>
 
   <mat-form-field>
-    <input matInput placeholder="Add email" #email>
+    <input matInput placeholder="Add email" #email (keyup.enter)="addEmail(email.value); email.value=''">
   </mat-form-field>
   <button mat-button (click)="addEmail(email.value); email.value=''">Add</button>
 

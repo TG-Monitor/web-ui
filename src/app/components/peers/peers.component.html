@@ -1,5 +1,5 @@
 <mat-form-field>
-  <input matInput placeholder="Add peer" #peerUsername>
+  <input matInput placeholder="Add peer" #peerUsername (keyup.enter)="addPeer(peerUsername.value); peerUsername.value=''">
 </mat-form-field>
 <button mat-button (click)="addPeer(peerUsername.value); peerUsername.value=''">Add</button>
 

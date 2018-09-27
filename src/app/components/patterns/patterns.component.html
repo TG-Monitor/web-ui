@@ -1,5 +1,5 @@
 <mat-form-field>
-  <input matInput placeholder="Add pattern" #patternText>
+  <input matInput placeholder="Add pattern" #patternText (keyup.enter)="addPattern(patternText.value); patternText.value=''">
 </mat-form-field>
 <button mat-button (click)="addPattern(patternText.value); patternText.value=''">Add</button>
 
