@@ -10,7 +10,6 @@ export class PatternsComponent implements OnInit {
 
   patterns: string[];
 
-
   constructor(private commService: CommService) { }
 
   ngOnInit() {

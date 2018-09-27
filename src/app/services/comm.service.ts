@@ -77,4 +77,25 @@ export class CommService {
     return this.rpc.rpc(payload);
   }
 
+
+  public getEmails(): Observable<string[]> {
+    // @ts-ignore
+    const payload: string = this.serializer.serializeRequest(REQUESTS.GET_EMAILS);
+    return this.rpc.rpc(payload).pipe(
+      map((response: string): string[] => this.serializer.deserializeResponse(response))
+    );
+  }
+
+  public addEmail(email: string): Observable<any> {
+    // @ts-ignore
+    const payload: string = this.serializer.serializeRequest(REQUESTS.ADD_EMAIL, email);
+    return this.rpc.rpc(payload);
+  }
+
+  public removeEmail(email: string): Observable<any> {
+    // @ts-ignore
+    const payload: string = this.serializer.serializeRequest(REQUESTS.REMOVE_EMAIL, email);
+    return this.rpc.rpc(payload);
+  }
+
 }

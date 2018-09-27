@@ -1,3 +1,21 @@
-<p>
-  email-dialog works!
-</p>
+<h2 mat-dialog-title>Set Notification Emails</h2>
+<mat-dialog-content>
+
+  <mat-form-field>
+    <input matInput placeholder="Add email" #email>
+  </mat-form-field>
+  <button mat-button (click)="addEmail(email.value); email.value=''">Add</button>
+
+
+  <mat-list>
+    <mat-list-item *ngFor="let email of emails">
+      {{email}}
+      <button mat-button (click)="removeEmail(email)">x</button>
+    </mat-list-item>
+  </mat-list>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close cdkFocusInitial>OK</button>
+</mat-dialog-actions>
