@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PeerService } from './peer.service';
+import { SerializerService } from './serializer.service';
 
-describe('PeerService', () => {
+describe('SerializerService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PeerService = TestBed.get(PeerService);
+    const service: SerializerService = TestBed.get(SerializerService);
     expect(service).toBeTruthy();
   });
 });

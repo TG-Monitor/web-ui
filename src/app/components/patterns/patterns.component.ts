@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Pattern } from '../../types/pattern';
-import { PATTERNS } from '../../types/mock-patterns';
+import {CommService} from '../../services/comm.service';
 
 @Component({
   selector: 'app-patterns',
@@ -9,22 +8,29 @@ import { PATTERNS } from '../../types/mock-patterns';
 })
 export class PatternsComponent implements OnInit {
 
-  patterns: Pattern[] = PATTERNS;
+  patterns: string[];
 
 
-  constructor() { }
+  constructor(private commService: CommService) { }
 
   ngOnInit() {
+    this.commService.getPatterns().subscribe(patterns => {
+      this.patterns = patterns;
+    });
   }
 
-  addPattern(text: string) {
-    text = text.trim();
-    if (!text) { return; }
-    this.patterns.unshift({text: text});
+  addPattern(pattern: string) {
+    pattern = pattern.trim();
+    if (!pattern) { return; }
+    this.commService.addPattern(pattern).subscribe(() => {
+      this.patterns.unshift(pattern);
+    });
   }
 
-  deletePattern(pattern: Pattern) {
-    this.patterns.splice(this.patterns.indexOf(pattern), 1);
+  removePattern(pattern: string) {
+    this.commService.removePattern(pattern).subscribe(() => {
+      this.patterns.splice(this.patterns.indexOf(pattern), 1);
+    });
   }
 
 }

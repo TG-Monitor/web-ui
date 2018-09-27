@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Peer } from '../../types/peer';
-import { PeerService } from '../../services/peer.service';
+import {CommService} from '../../services/comm.service';
 
 @Component({
   selector: 'app-peers',
@@ -12,22 +12,26 @@ export class PeersComponent implements OnInit {
 
   peers: Peer[];
 
-  constructor(private peerService: PeerService) { }
+  constructor(private commService: CommService) { }
 
   ngOnInit() {
-    this.peers = this.peerService.getPeers();
+      this.commService.getPeers().subscribe(peers => {
+        this.peers = peers;
+      });
   }
 
-  addPeer(username: string) {
-    username = username.trim();
-    if (!username) { return; }
-    const newPeer: Peer = this.peerService.addPeer(username);
-    this.peers.unshift(newPeer);
+  addPeer(name: string) {
+    name = name.trim();
+    if (!name) { return; }
+    this.commService.addPeer(name).subscribe(() => {
+      this.peers.unshift({username: name});
+    });
   }
 
-  deletePeer(peer: Peer) {
-    this.peerService.deletePeer(peer);
-    this.peers.splice(this.peers.indexOf(peer), 1);
+  removePeer(peer: Peer) {
+    this.commService.removePeer(peer).subscribe(() => {
+      this.peers.splice(this.peers.indexOf(peer), 1);
+    });
   }
 
 }

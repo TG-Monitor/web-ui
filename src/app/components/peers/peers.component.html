@@ -7,6 +7,6 @@
 <mat-list>
   <mat-list-item *ngFor="let peer of peers">
     {{peer.username}}
-    <button mat-button (click)="deletePeer(peer)">x</button>
+    <button mat-button (click)="removePeer(peer)">x</button>
   </mat-list-item>
 </mat-list>

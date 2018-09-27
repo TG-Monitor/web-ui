@@ -6,7 +6,7 @@
 
 <mat-list>
   <mat-list-item *ngFor="let pattern of patterns">
-    {{pattern.text}}
-    <button mat-button (click)="deletePattern(pattern)">x</button>
+    {{pattern}}
+    <button mat-button (click)="removePattern(pattern)">x</button>
   </mat-list-item>
 </mat-list>
