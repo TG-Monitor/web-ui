@@ -22,6 +22,9 @@ import {RpcService} from './services/rpc.service';
 import {CommService} from './services/comm.service';
 import {RpcWrapperService} from './services/rpc-wrapper.service';
 import { StatusComponent } from './components/status/status.component';
+import { MenuComponent } from './components/menu/menu.component';
+import {MatIconModule} from '@angular/material/icon';
+
 
 const stompConfig: StompConfig = {
   url: 'ws://127.0.0.1:15674/ws',
@@ -42,7 +45,8 @@ const stompConfig: StompConfig = {
     GridComponent,
     PeersComponent,
     PatternsComponent,
-    StatusComponent
+    StatusComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,8 @@ const stompConfig: StompConfig = {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatIconModule
   ],
   providers: [
     StompService,

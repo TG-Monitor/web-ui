@@ -1,7 +1,11 @@
-header {
+#header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%; }
+
+#header-right {
+  display: flex;
+  align-items: center; }
 
 /*# sourceMappingURL=toolbar.component.css.map */
