@@ -1,5 +1,15 @@
 <div id="container-full-screen">
-  <mat-card>
-    login works!
+  <mat-card class="mat-typography">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <p>Please enter your Telegram account phone number.</p>
+
+      <mat-form-field id="phone-input">
+        <input matInput placeholder="Enter phone number" #phoneNumber>
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint>Include country code (e.g. +41xxxx)</mat-hint>
+      </mat-form-field>
+      <button mat-button (click)="login(phoneNumber.value)">Submit</button>
+    </mat-card-content>
   </mat-card>
 </div>

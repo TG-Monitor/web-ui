@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CommService} from '../../services/comm.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private commService: CommService) { }
 
   ngOnInit() {
+  }
+
+  login(phoneNumber: string): void {
+
   }
 
 }
