@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,QAAS;EACP,UAAU,EAAE,IAAI",
+"sources": ["logout-dialog.component.scss"],
+"names": [],
+"file": "logout-dialog.component.css"
+}

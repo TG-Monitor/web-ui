@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Do you really want to log out?</h2>
+<mat-dialog-content>
+  <p>Monitor will be stopped and all data will be lost.</p>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" id="buttons">
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+  <button mat-raised-button color="warn" mat-dialog-close (click)="logout()">Logout</button>
+</mat-dialog-actions>

@@ -5,11 +5,18 @@
       <p>Please enter your Telegram account phone number.</p>
 
       <mat-form-field id="phone-input">
-        <input matInput placeholder="Enter phone number" #phoneNumber>
+        <input matInput placeholder="Enter phone number" #phoneNumber [disabled]="isLoginCodeRequest">
         <mat-icon matSuffix>phone</mat-icon>
         <mat-hint>Include country code (e.g. +41xxxx)</mat-hint>
       </mat-form-field>
-      <button mat-button (click)="login(phoneNumber.value)">Submit</button>
+      <button mat-button (click)="login(phoneNumber.value)" [disabled]="isLoginCodeRequest">Submit</button>
+
+      <div *ngIf="isLoginCodeRequest">
+        <mat-form-field id="login-code-input">
+          <input matInput placeholder="Enter login code" #loginCode>
+        </mat-form-field>
+        <button mat-button (click)="loginCodeService.setLoginCode(loginCode.value)">Submit</button>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

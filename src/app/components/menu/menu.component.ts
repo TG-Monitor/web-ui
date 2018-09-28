@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {EmailDialogComponent} from '../email-dialog/email-dialog.component';
+import {LogoutDialogComponent} from '../logout-dialog/logout-dialog.component';
 
 @Component({
   selector: 'app-menu',
@@ -22,6 +23,10 @@ export class MenuComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  logout(): void {
+    this.dialog.open(LogoutDialogComponent);
   }
 
 }

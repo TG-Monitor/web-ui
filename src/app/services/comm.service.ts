@@ -5,13 +5,56 @@ import {SerializerService} from './serializer.service';
 import {REQUESTS} from '../types/requests';
 import {map} from 'rxjs/operators';
 import {RpcWrapperService} from './rpc-wrapper.service';
+import {StompService} from '@stomp/ng2-stompjs';
+import {UUID} from 'angular2-uuid';
+import {Message, StompHeaders} from '@stomp/stompjs';
+import {LoginCodeService} from './login-code.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommService {
 
-  constructor(private serializer: SerializerService, private rpc: RpcWrapperService) { }
+  constructor(private serializer: SerializerService, private rpc: RpcWrapperService,
+              private stompService: StompService, private loginCodeService: LoginCodeService) { }
+
+  public login(phoneNumber: string): Observable<any> {
+
+    // Listen on temporary queue for login code request from core
+    const queue: string = UUID.UUID();
+    console.log('Declaring login code request queue ' + queue);
+    this.stompService.subscribe(queue, {durable: false, 'auto-delete': true, exclusive: false})
+      .subscribe((message: Message) => {
+        console.log('Received login code request');
+        // We know that it must be a get_login_code request, so no need to check
+        const replyTo: string = message.headers['reply-to'];
+        const correlationId: string = message.headers['correlation-id'];
+        // @ts-ignore
+        const replyHeaders: StompHeaders = {
+          durable: false, 'auto-delete': true,
+          exclusive: false, 'correlation-id': correlationId
+        };
+
+        this.loginCodeService.setIsRequestOngoing(true);
+        this.loginCodeService.getLoginCodeObservable().subscribe((loginCode: string) => {
+          if (loginCode === undefined) return;
+          console.log('Received login code ' + loginCode + ', sending back response');
+          const replyPayload: string = this.serializer.serializeResponse(loginCode);
+          this.stompService.publish(replyTo, replyPayload, replyHeaders);
+        });
+    });
+
+    // Make login request
+    // @ts-ignore
+    const payload: string = this.serializer.serializeRequest(REQUESTS.LOGIN, phoneNumber);
+    return this.rpc.rpc(payload, {'login_code_request_queue': queue});
+  }
+
+  public logout(): Observable<any> {
+    // @ts-ignore
+    const payload: string = this.serializer.serializeRequest(REQUESTS.LOGOUT);
+    return this.rpc.rpc(payload);
+  }
 
   public isLoggedIn(): Observable<boolean> {
     // @ts-ignore

@@ -28,6 +28,8 @@ import { EmailDialogComponent } from './components/email-dialog/email-dialog.com
 import {MatDialog, MatDialogModule} from '@angular/material';
 import {StatusService} from './services/status.service';
 import { LoginComponent } from './components/login/login.component';
+import {LoginCodeService} from './services/login-code.service';
+import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 
 
 const stompConfig: StompConfig = {
@@ -44,7 +46,8 @@ const stompConfig: StompConfig = {
 
 @NgModule({
   entryComponents: [
-    EmailDialogComponent
+    EmailDialogComponent,
+    LogoutDialogComponent
   ],
   declarations: [
     AppComponent,
@@ -55,7 +58,8 @@ const stompConfig: StompConfig = {
     StatusComponent,
     MenuComponent,
     EmailDialogComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +86,8 @@ const stompConfig: StompConfig = {
     RpcService,
     RpcWrapperService,
     CommService,
-    StatusService
+    StatusService,
+    LoginCodeService
   ],
   bootstrap: [AppComponent]
 })

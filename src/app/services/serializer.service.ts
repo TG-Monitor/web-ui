@@ -19,4 +19,8 @@ export class SerializerService {
   public deserializeResponse(msg: string) {
     return JSON.parse(msg);
   }
+
+  public serializeResponse(msg: string) {
+    return JSON.stringify(msg);
+  }
 }
