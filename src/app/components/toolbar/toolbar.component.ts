@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {StatusService} from '../../services/status.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  isLoggedIn: boolean;
+
+  constructor(private statusService: StatusService) { }
 
   ngOnInit() {
+    this.statusService.isLoggedIn().subscribe((status: boolean) => {
+      this.isLoggedIn = status;
+    });
   }
 
 }

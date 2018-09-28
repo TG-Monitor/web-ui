@@ -26,6 +26,8 @@ import { MenuComponent} from './components/menu/menu.component';
 import {MatIconModule} from '@angular/material/icon';
 import { EmailDialogComponent } from './components/email-dialog/email-dialog.component';
 import {MatDialog, MatDialogModule} from '@angular/material';
+import {StatusService} from './services/status.service';
+import { LoginComponent } from './components/login/login.component';
 
 
 const stompConfig: StompConfig = {
@@ -52,7 +54,8 @@ const stompConfig: StompConfig = {
     PatternsComponent,
     StatusComponent,
     MenuComponent,
-    EmailDialogComponent
+    EmailDialogComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ const stompConfig: StompConfig = {
     },
     RpcService,
     RpcWrapperService,
-    CommService
+    CommService,
+    StatusService
   ],
   bootstrap: [AppComponent]
 })

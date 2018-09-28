@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <header id="header">
     <div>Telegram Watcher</div>
-    <div id="header-right">
+    <div id="header-right" *ngIf="isLoggedIn">
       <app-status></app-status>
       <app-menu></app-menu>
     </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CommService} from '../../services/comm.service';
+import {StatusService} from '../../services/status.service';
 
 @Component({
   selector: 'app-status',
@@ -8,20 +9,22 @@ import {CommService} from '../../services/comm.service';
 })
 export class StatusComponent implements OnInit {
 
-  public isLoggedIn: boolean;
-  public phoneNumber: string;
+  isLoggedIn: boolean;
+  phoneNumber: string;
 
-  constructor(private commService: CommService) { }
+  constructor(private commService: CommService, private statusService: StatusService) { }
 
   ngOnInit() {
-    this.commService.isLoggedIn().subscribe((bool: boolean) => {
-      this.isLoggedIn = bool;
-      if (this.isLoggedIn) {
-        this.commService.getPhoneNumber().subscribe((num: string) => {
-          this.phoneNumber = num;
-        });
-      }
+
+    this.statusService.isLoggedIn().subscribe((status: boolean) => {
+      this.isLoggedIn = status;
     });
+
+    if (this.isLoggedIn) {
+      this.commService.getPhoneNumber().subscribe((num: string) => {
+        this.phoneNumber = num;
+      });
+    }
   }
 
 }
