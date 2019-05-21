@@ -13,6 +13,7 @@ export class StatusService {
 
   isLoggedIn(): Observable<boolean> {
     return this.isLoggedInObservable;
+    // return this.isLoggedInSubject.asObservable();  // this should also work
   }
 
   setLoggedIn(status: boolean): void {
